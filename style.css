@@ -2,12 +2,21 @@ html, body {
     background-color: #F5F5F5;
     color: #424242;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
     margin: 0;
     padding: 0;
 }
 
+.black {
+    font-weight: 900;
+}
+
+.bold {
+    font-weight: 700;
+}
+
 #container {
-    padding: 10vh;
+    margin: 20vh;
 }
 
 #landing {
@@ -18,7 +27,7 @@ html, body {
 #name-container {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -100%);
 }
 
@@ -38,7 +47,7 @@ html, body {
 
 .scroll-down {
     position: absolute;
-    top: 65%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, 0%);
     animation: bounce 5s infinite;
@@ -51,17 +60,31 @@ html, body {
 
 @keyframes bounce {
     0% {
-        top: 60%;
+        top: 50%;
         opacity: 0.1;
     }
 
     50% {
-        top: 65%;
+        top: 55%;
         opacity: 1;
     }
 
     100% {
-        top: 60%;
+        top: 50%;
         opacity: 0.1;
     }
 }
+
+.github-commit {
+    padding: 25px 0px;
+}
+
+a.repo-link {
+    color: #424242;
+    cursor: pointer;
+}
+
+.timestamp {
+   float: right;
+}
+
