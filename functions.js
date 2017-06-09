@@ -20,7 +20,7 @@ function populateGitHubSection(data) {
         for(var i = 0; i < 3; i++) {
             if(data[i].type === "PushEvent") {
                 var html = buildGitHubHTML(data[i]);
-                $('#github').append(html);
+                $('#github-container').append(html);
             }
     }
 }
