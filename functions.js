@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
     beforeSend: function(request) {
-        request.setRequestHeader("Accept", "application/vnd.github.cloak-preview");
+        request.setRequestHeader("Accept", "application/json");
     },
     dataType: "json",
     url: "https://api.github.com/users/aaronraff/events/public",
@@ -11,9 +11,13 @@ $(document).ready(function() {
     });
 });
 
+/**
+ * Adds HTML to the github section of the site.
+ * @param {object} data - Information about activity.
+ */
 function populateGitHubSection(data) {
     console.log(data);
-        for(var i = 2; i >= 0; i--) {
+        for(var i = 0; i < 3; i++) {
             if(data[i].type === "PushEvent") {
                 var html = buildGitHubHTML(data[i]);
                 $('#github').append(html);
@@ -21,7 +25,12 @@ function populateGitHubSection(data) {
     }
 }
 
+/**
+ * Generates HTML from activity data.
+ * @param {object} data - Information about activity.
+ */
 function buildGitHubHTML(data) {
+    console.log(data);
     var timestamp = data.created_at;
     timestamp = timestamp.substring(0, timestamp.indexOf('T'));
     var time = "<span class='timestamp'>" + timestamp + "</span>";

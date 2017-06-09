@@ -86,5 +86,6 @@ a.repo-link {
 
 .timestamp {
    float: right;
+   font-weight: 400;
 }
 
