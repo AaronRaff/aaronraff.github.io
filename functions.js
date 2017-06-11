@@ -8,7 +8,15 @@ $(document).ready(function() {
     success: function(data) {
         populateGitHubSection(data);
     }
-    });
+});
+
+    $('#nav-icon').on('click', function() {
+        if(!$('#nav').hasClass('nav-expanded')) {
+            $('#nav').addClass('nav-expanded');
+        } else {
+            $('#nav').removeClass('nav-expanded');
+        }
+    })
 });
 
 /**
