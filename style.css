@@ -7,6 +7,10 @@ html, body {
     padding: 0;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0 50px;
+}
+
 .black {
     font-weight: 900;
 }
@@ -15,22 +19,28 @@ html, body {
     font-weight: 700;
 }
 
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 50px;
+    position: relative;
+}
+
 #nav-icon {
     position: absolute;
-    top: 25px;
-    right: 0;
-    padding: 50px;
+    /* Match header padding */
+    right: 50px;
     z-index: 4;
 }
 
 #nav {
     background-color: #64FFDA;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: -50%;
-    padding: 100px;
+    position: absolute;
+    right: 0;
     z-index: 3;
+    transform: translate(100%, 0);
     transition: all 1s ease;
 }
 
@@ -45,26 +55,22 @@ html, body {
 
 .nav-expanded {
     right: 0 !important;
-}
-
-#container {
-    margin: 20vh;
+    transform: translate(0, 0) !important;
 }
 
 #description {
     background-color: #64FFDA;
-    position: absolute;
+    display: inline-block;
     left: 50%;
     top: 50px;
     margin: 0;
     padding: 25px 50px;
     text-align: center;
     text-transform: uppercase;
-    transform: translate(-50%, 0);
 }
 
 #landing {
-    height: 80vh;
+    height: 50vh;
     position: relative;
     text-align: center;
 }
@@ -122,22 +128,28 @@ html, body {
 
 #services-container {
     background-color: #64FFDA;
-    margin: 0px -20vh;
-    padding: 50px 20vh;
-    overflow: auto;
+    text-align: center;
+    overflow-x: hidden;
 }
 
 #services-container h1 {
+    padding-top: 50px;
+    text-align: left;
     margin-bottom: 50px;
+}
+
+#services-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .service {
     box-sizing: border-box;
-    display: inline-block;
-    float: left;
-    padding: 25px;
+    padding: 50px;
     text-align: center;
-    width: 50%; 
+    overflow-y: hidden;
 }
 
 .service ul {
@@ -188,10 +200,6 @@ a.repo-link {
 /*Media Queries*/
 
 @media (max-width: 900px) {
-    #container {
-        margin: 5vh;
-    }
-
     #landing {
         height: 95vh;
     }

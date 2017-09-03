@@ -24,11 +24,20 @@ $(document).ready(function() {
  * @param {object} data - Information about activity.
  */
 function populateGitHubSection(data) {
-    console.log(data);
-        for(var i = 0; i < 3; i++) {
-            if(data[i].type === "PushEvent") {
-                var html = buildGitHubHTML(data[i]);
+        let count = 0, items = 0;
+        let done = false;
+
+        while(!done && items < 3) {
+            count++;
+            if(data[count].type === "PushEvent") {
+                items++;
+                var html = buildGitHubHTML(data[count]);
                 $('#github-container').append(html);
+
+                //Check if at end of array or count is 3
+                if(count >= data.length) {
+                    done = true;
+                }
             }
     }
 }
@@ -38,7 +47,6 @@ function populateGitHubSection(data) {
  * @param {object} data - Information about activity.
  */
 function buildGitHubHTML(data) {
-    console.log(data);
     var timestamp = data.created_at;
     timestamp = timestamp.substring(0, timestamp.indexOf('T'));
     var time = "<span class='timestamp'>" + timestamp + "</span>";
