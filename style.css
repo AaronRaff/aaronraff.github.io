@@ -94,15 +94,14 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 h3#blog {
-    background-color: #424242;
-    color: #ffffff;
-    padding: 20px 50px;
-    margin-top: 50px;
-    text-transform: uppercase;
+    margin-top: 100px;
+    text-transform: uppercase;    
 }
 
 h3#blog a {
+    background-color: #424242;
     color: #ffffff;
+    padding: 20px 60px;
     text-decoration: none;
 }
 
@@ -144,6 +143,21 @@ h3#blog a {
 
 .service ul li {
     padding: 10px;
+}
+
+#about {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#about h1 {
+    text-align: left;
+}
+
+#about #bio-img {
+    height: 300px;
+    width: auto;
+    border-radius: 100%;
 }
 
 #github-container {

@@ -28,12 +28,13 @@ function populateGitHubSection(data) {
         let done = false;
 
         while(!done && items < 3) {
-            count++;
             if(data[count].type === "PushEvent") {
                 items++;
                 var html = buildGitHubHTML(data[count]);
                 $('#github-container').append(html);
 
+                count++;                
+                                
                 //Check if at end of array or count is 3
                 if(count >= data.length) {
                     done = true;
