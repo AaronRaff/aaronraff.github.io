@@ -5,10 +5,12 @@ html, body {
     font-weight: 400;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-    margin: 0 50px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .black {
@@ -70,16 +72,13 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #landing {
-    height: 50vh;
+    padding: 100px 0px;
     position: relative;
     text-align: center;
 }
 
 #name-container {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -100%);
+    display: inline-block;
 }
 
 #name {
@@ -96,34 +95,22 @@ p, h1, h2, h3, h4, h5, h6 {
     animation: expandIn 2s;
 }
 
-.scroll-down {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    animation: bounce 5s infinite;
+h3#blog {
+    background-color: #424242;
+    color: #ffffff;
+    padding: 20px 50px;
+    margin-top: 50px;
+    text-transform: uppercase;
+}
+
+h3#blog a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 @keyframes expandIn {
     from { width: 0% }
     to { width: 100% }
-}
-
-@keyframes bounce {
-    0% {
-        top: 50%;
-        opacity: 0.1;
-    }
-
-    50% {
-        top: 55%;
-        opacity: 1;
-    }
-
-    100% {
-        top: 50%;
-        opacity: 0.1;
-    }
 }
 
 #services-container {
