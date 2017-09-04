@@ -63,8 +63,6 @@ p, h1, h2, h3, h4, h5, h6 {
 #description {
     background-color: #64FFDA;
     display: inline-block;
-    left: 50%;
-    top: 50px;
     margin: 0;
     padding: 25px 50px;
     text-align: center;
@@ -187,6 +185,12 @@ a.repo-link {
 /*Media Queries*/
 
 @media (max-width: 900px) {
+    #nav-icon {
+        position: relative;
+        margin-left: 25px;
+        right: 0;
+    }
+
     #landing {
         height: 95vh;
     }
