@@ -154,7 +154,20 @@ h3#blog a {
     text-align: left;
 }
 
+#about-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px 100px;
+}
+
+#about-text {
+    display: inline-block;
+    width: 800px;
+}
+
 #about #bio-img {
+    display: inline-block;
     height: 250px;
     width: auto;
     margin-bottom: 50px;
@@ -163,8 +176,6 @@ h3#blog a {
 
 #about p {
     text-align: left;
-    max-width: 750px; 
-    margin: 25px auto;  
 }
 
 #github-container {
@@ -188,7 +199,7 @@ a.repo-link {
 #footer {
     background-color: #424242;
     color: #F5F5F5;
-    margin-top: 200px;
+    margin-top: 100px;
     padding: 25px 20vh;
     text-align: center;
 }
@@ -214,6 +225,16 @@ a.repo-link {
 
     #landing {
         height: 95vh;
+    }
+
+    #about-content {
+        margin: 50px 0px;
+    }
+
+    .timestamp {
+        display: block;
+        float: none;
+        margin: 10px 0px;
     }
 
     #footer {
