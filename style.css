@@ -25,9 +25,7 @@ p, h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     padding: 20px 50px;
-    position: relative;
 }
 
 #nav-icon {
@@ -38,6 +36,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #nav {
+    display: none;
     background-color: #64FFDA;
     position: absolute;
     right: 0;
@@ -217,10 +216,18 @@ a.repo-link {
 /*Media Queries*/
 
 @media (max-width: 900px) {
+    #name {
+        font-size: 50px;
+    }
+
+    #header {
+        background-color: #64FFDA;
+        padding: 10px 0px;
+    }
+
     #nav-icon {
         position: relative;
-        margin-left: 25px;
-        right: 0;
+        margin-left: 10px;
     }
 
     #landing {
