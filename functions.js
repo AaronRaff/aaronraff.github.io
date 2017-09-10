@@ -1,22 +1,14 @@
 $(document).ready(function() {
-    $.ajax({
-    beforeSend: function(request) {
-        request.setRequestHeader("Accept", "application/json");
-    },
-    dataType: "json",
-    url: "https://api.github.com/users/aaronraff/events/public",
-    success: function(data) {
-        populateGitHubSection(data);
-    }
-});
-
-    $('#nav-icon').on('click', function() {
-        if(!$('#nav').hasClass('nav-expanded')) {
-            $('#nav').addClass('nav-expanded');
-        } else {
-            $('#nav').removeClass('nav-expanded');
+        $.ajax({
+        beforeSend: function(request) {
+            request.setRequestHeader("Accept", "application/json");
+        },
+        dataType: "json",
+        url: "https://api.github.com/users/aaronraff/events/public",
+        success: function(data) {
+            populateGitHubSection(data);
         }
-    })
+    });
 });
 
 /**

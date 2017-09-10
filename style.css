@@ -22,41 +22,9 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    text-align: center;
     padding: 20px 50px;
-}
-
-#nav-icon {
-    position: absolute;
-    /* Match header padding */
-    right: 50px;
-    z-index: 4;
-}
-
-#nav {
-    display: none;
-    background-color: #64FFDA;
-    position: absolute;
-    right: 0;
-    z-index: 3;
-    transform: translate(100%, 0);
-    transition: all 1s ease;
-}
-
-#nav ul {
-    list-style-type: none;
-}
-
-#nav ul li {
-    font-size: 24px;
-    margin: 50px;
-}
-
-.nav-expanded {
-    right: 0 !important;
-    transform: translate(0, 0) !important;
 }
 
 #description {
