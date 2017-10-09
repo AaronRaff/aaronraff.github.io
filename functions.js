@@ -17,22 +17,24 @@ $(document).ready(function() {
  */
 function populateGitHubSection(data) {
         let count = 0, items = 0;
-        let done = data.length > 0;
+        let done = false;
 
         while(!done && items < 3) {
             if(data[count].type === "PushEvent") {
+                //Increment count of items added to page.
                 items++;
                 var html = buildGitHubHTML(data[count]);
-                $('#github-container').append(html);
-
-                count++;                
-                                
-                //Check if at end of array or count is 3
-                if(count >= data.length) {
-                    done = true;
-                }
+                $('#github-container').append(html);    
             }
-    }
+            
+            //Check if at end of array or count is 3
+            if(count >= data.length) {
+                done = true;
+            }
+
+            //Increment count to check next item
+            count++;
+        }
 }
 
 /**
