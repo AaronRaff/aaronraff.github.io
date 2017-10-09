@@ -17,7 +17,7 @@ $(document).ready(function() {
  */
 function populateGitHubSection(data) {
         let count = 0, items = 0;
-        let done = false;
+        let done = data.length > 0;
 
         while(!done && items < 3) {
             if(data[count].type === "PushEvent") {
