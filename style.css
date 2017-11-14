@@ -130,6 +130,7 @@ h3#blog a {
 
 #about-text {
     display: inline-block;
+    line-height: 1.5;
     width: 800px;
 }
 
