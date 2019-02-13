@@ -77,39 +77,19 @@ h3#blog a {
     to { width: 100% }
 }
 
-#services-container {
-    background-color: #64FFDA;
-    text-align: center;
+#interests-container {
+	text-align: center;
+    padding-top: 50px;
     overflow-x: hidden;
 }
 
-#services-container h1 {
-    padding-top: 50px;
+#interests-container h1 {
     text-align: left;
     margin-bottom: 50px;
 }
 
-#services-flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.service {
-    box-sizing: border-box;
-    padding: 50px;
-    text-align: center;
-    overflow-y: hidden;
-}
-
-.service ul {
-    list-style-type: none;
-    padding: 0px;
-}
-
-.service ul li {
-    padding: 10px;
+#interests-container h3 {
+	display: inline-block;
 }
 
 #about {
@@ -132,6 +112,13 @@ h3#blog a {
     display: inline-block;
     line-height: 1.5;
     width: 800px;
+}
+
+#about-text a {
+	color: #000000;
+    background-color: #64FFDA;
+	padding: 3px;
+	text-decoration: none;	
 }
 
 #about #bio-img {
@@ -214,3 +201,9 @@ a.repo-link {
     }
 }
 
+@media (max-width: 500px) {
+	#interests-container h3 {
+		display: block;
+		margin: 25px 0px;
+	}
+}
