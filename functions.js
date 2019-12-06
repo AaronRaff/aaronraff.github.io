@@ -31,7 +31,7 @@ function populateGitHubSection(data) {
                     if(commit.author.email == "aaronraffdev@gmail.com") {
                         //Increment count of items added to page.
                         items++;
-                        var html = buildGitHubHTML(data[count]);
+                        var html = buildGitHubHTML(commit, data[count].repo);
                         $('#github-container').append(html);
                     }
                 });
@@ -51,16 +51,16 @@ function populateGitHubSection(data) {
  * Generates HTML from activity data.
  * @param {object} data - Information about activity.
  */
-function buildGitHubHTML(data) {
+function buildGitHubHTML(commitData, repoData) {
     var timestamp = data.created_at;
     timestamp = timestamp.substring(0, timestamp.indexOf('T'));
     var time = "<span class='timestamp'>" + timestamp + "</span>";
     
     var repo = "<a class='repo-link' target='_blank' href='https://github.com/" + data.repo.name + "'>" + 
-               "<h3>" + data.repo.name + time + "</h3>" +
+               "<h3>" + repoData.name + time + "</h3>" +
                "</a>";
 
-    var message = "<p>" + data.payload.commits[0].message + "</p>"; 
+    var message = "<p>" + commitData.message + "</p>"; 
 
     return "<div class='github-commit'>" + repo + message + "</div><hr>";
 }
