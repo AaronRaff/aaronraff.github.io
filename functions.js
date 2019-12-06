@@ -21,10 +21,20 @@ function populateGitHubSection(data) {
 
         while(!done && items < 3) {
             if(data[count].type === "PushEvent") {
-                //Increment count of items added to page.
-                items++;
-                var html = buildGitHubHTML(data[count]);
-                $('#github-container').append(html);    
+                // Look at the commits under this push
+                data[count].payload.commits.foreach(commit => {
+                    // Only display 3 commits
+                    if items >= 3 {
+                        return       
+                    }
+                    
+                    if commit.author.email == "aaronraffdev@gmail.com" {
+                        //Increment count of items added to page.
+                        items++;
+                        var html = buildGitHubHTML(data[count]);
+                        $('#github-container').append(html);
+                    }
+                });
             }
             
             //Check if at end of array or count is 3
