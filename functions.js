@@ -24,11 +24,11 @@ function populateGitHubSection(data) {
                 // Look at the commits under this push
                 data[count].payload.commits.foreach(commit => {
                     // Only display 3 commits
-                    if items >= 3 {
+                    if(items >= 3) {
                         return       
                     }
                     
-                    if commit.author.email == "aaronraffdev@gmail.com" {
+                    if(commit.author.email == "aaronraffdev@gmail.com") {
                         //Increment count of items added to page.
                         items++;
                         var html = buildGitHubHTML(data[count]);
