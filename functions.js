@@ -22,7 +22,7 @@ function populateGitHubSection(data) {
         while(!done && items < 3) {
             if(data[count].type === "PushEvent") {
                 // Look at the commits under this push
-                data[count].payload.commits.foreach(commit => {
+                data[count].payload.commits.forEach(commit => {
                     // Only display 3 commits
                     if(items >= 3) {
                         return       
