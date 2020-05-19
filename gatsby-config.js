@@ -20,5 +20,16 @@ module.exports = {
     },
     "gatsby-transformer-sharp",
     "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-plugin-prefetch-google-fonts",
+      options: {
+        fonts: [
+          {
+            family: "Montserrat",
+            variants: ["100", "300", "500", "700", "900"],
+          },
+        ],
+      },
+    },
   ],
 };

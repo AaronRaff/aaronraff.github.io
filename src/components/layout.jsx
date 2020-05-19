@@ -5,7 +5,7 @@ import Footer from "./footer";
 
 export default function Layout({ children }) {
   return (
-    <div className="my-16 mx-8 lg:my-16 lg:mx-40">
+    <div className="font-body my-16 mx-8 lg:my-16 lg:mx-40">
       <Header />
       {children}
       <Footer />
