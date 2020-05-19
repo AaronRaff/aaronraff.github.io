@@ -1,13 +1,11 @@
 import React from "react";
 import Layout from "../components/layout";
-import Header from "../components/header";
+import PostList from "../components/post-list";
 
 export default function Home() {
   return (
     <Layout>
-      <div>
-        <Header />
-      </div>
+      <PostList />
     </Layout>
   );
 }

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.post h1 {
+    @apply text-2xl font-bold my-4;
+}
+
+.post p {
+    @apply text-lg;
+}

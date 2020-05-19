@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
 
@@ -8,7 +8,7 @@ export default function Header({ children }) {
     query MyQuery {
       file(relativePath: { eq: "profile-picture.jpg" }) {
         childImageSharp {
-          fluid {
+          fluid(maxWidth: 200) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -18,8 +18,10 @@ export default function Header({ children }) {
 
   return (
     <div>
-      <div className="inline-block">
-        <h1 className="text-3xl font-bold pb-3">Aaron Raff</h1>
+      <div className="inline-block mb-24">
+        <Link to="/" className="text-3xl font-bold mb-3 inline-block">
+          Aaron Raff
+        </Link>
         <h3 className="text-1xl">
           Full-Stack Software Engineer at
           <a
