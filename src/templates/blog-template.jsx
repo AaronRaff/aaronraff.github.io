@@ -2,11 +2,17 @@ import React from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
+import { DiscussionEmbed } from "disqus-react";
 import Layout from "../components/layout";
 
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
+  const disqusConfig = {
+    identifier: frontmatter.slug,
+    title: frontmatter.title,
+  };
+
   return (
     <Layout>
       <h1 className="text-3xl font-bold pb-3">{frontmatter.title}</h1>
@@ -20,9 +26,13 @@ export default function Template({ data }) {
       <p className="font-light text-center text-sm text-gray-500 mt-2">
         {frontmatter.photoCreds}
       </p>
-      <div className="post mt-4">
+      <div className="post mt-4 mb-16">
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
+      <DiscussionEmbed
+        shortname={process.env.GATSBY_DISQUS_NAME}
+        config={disqusConfig}
+      />
     </Layout>
   );
 }
@@ -54,6 +64,7 @@ Template.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         subtitle: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
