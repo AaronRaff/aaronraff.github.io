@@ -14,6 +14,7 @@ export default function Template({ data }) {
       <p className="mb-8">{frontmatter.subtitle}</p>
       <Img
         className="h-64 w-full block"
+        alt={frontmatter.altText}
         fluid={frontmatter.featuredImage.childImageSharp.fluid}
       />
       <p className="font-light text-center text-sm text-gray-500 mt-2">
@@ -36,6 +37,7 @@ export const pageQuery = graphql`
         title
         subtitle
         photoCreds
+        altText
         featuredImage {
           childImageSharp {
             fluid(maxWidth: 500) {
@@ -56,6 +58,7 @@ Template.propTypes = {
         subtitle: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         photoCreds: PropTypes.string.isRequired,
+        altText: PropTypes.string.isRequired,
         featuredImage: PropTypes.shape({
           childImageSharp: PropTypes.shape({
             fluid: PropTypes.instanceOf(Img.fluidObject).isRequired,
