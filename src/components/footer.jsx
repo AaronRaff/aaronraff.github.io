@@ -32,7 +32,7 @@ export default function Footer() {
   });
 
   return (
-    <div className="text-center my-16 absolute left-0 right-0 bottom-0">
+    <div className="text-center my-16">
       {elts}
     </div>
   );

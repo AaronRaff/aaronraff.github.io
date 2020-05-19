@@ -8,10 +8,6 @@ import Layout from "../components/layout";
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
-  const disqusConfig = {
-    identifier: frontmatter.slug,
-    title: frontmatter.title,
-  };
 
   return (
     <Layout>
@@ -31,7 +27,7 @@ export default function Template({ data }) {
       </div>
       <DiscussionEmbed
         shortname={process.env.GATSBY_DISQUS_NAME}
-        config={disqusConfig}
+        config={{ identifier: frontmatter.slug, title: frontmatter.title }}
       />
     </Layout>
   );
