@@ -37,7 +37,7 @@ export default function SEO({ title, description, image, article }) {
   };
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet title={seo.title} htmlAttributes={{ lang: "en" }}>
       <link rel="canonical" href={seo.url} />
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
