@@ -19,7 +19,6 @@ Promise.all(
       .jpeg({ quality: QUALITY })
       .toFile(optimizedName);
 
-    console.log("here");
     return fs.rename(optimizedName, match);
   })
 );

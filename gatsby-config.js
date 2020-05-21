@@ -1,10 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: "Aaron Raff's Blog",
+    title: "Aaron Raff",
+    url: "https://www.aaronraff.dev",
+    image: "/static/profile_picture.jpg",
+    description: "Aaron Raff's Blog",
+    twitterUsername: "@aaronraff_",
   },
   plugins: [
     "gatsby-plugin-postcss",
     "gatsby-plugin-sharp",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
       options: {

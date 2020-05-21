@@ -5,14 +5,15 @@ import Img from "gatsby-image";
 import { DiscussionEmbed } from "disqus-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { useLocation } from "@reach/router";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
-  const pageLink = encodeURIComponent(
-    `https://aaronraff.dev${frontmatter.slug}`
-  );
+  const location = useLocation();
+  const pageLink = encodeURIComponent(location.href);
   const links = [
     `https://twitter.com/intent/tweet?url=${pageLink}`,
     `http://www.facebook.com/share.php?u=${pageLink}`,
@@ -37,6 +38,12 @@ export default function Template({ data }) {
 
   return (
     <Layout>
+      <SEO
+        title={frontmatter.title}
+        description={frontmatter.subtitle}
+        image={frontmatter.featuredImage.childImageSharp.fluid.src}
+        article
+      />
       <h1 className="text-3xl font-bold pb-3">{frontmatter.title}</h1>
       <p className="font-light pb-2 text-gray-500">{frontmatter.date}</p>
       <p className="mb-8">{frontmatter.subtitle}</p>
