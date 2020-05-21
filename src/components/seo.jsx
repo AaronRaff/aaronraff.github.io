@@ -10,7 +10,6 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         url
-        defaultImage: image
         defaultDescription: description
         twitterUsername
       }
@@ -24,7 +23,6 @@ export default function SEO({ title, description, image, article }) {
   const {
     defaultTitle,
     url,
-    defaultImage,
     defaultDescription,
     twitterUsername,
   } = site.siteMetadata;
@@ -32,7 +30,7 @@ export default function SEO({ title, description, image, article }) {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${url}${image || defaultImage}`,
+    image: `${url}${image}`,
     url: encodeURIComponent(location.href),
   };
 
@@ -60,13 +58,12 @@ export default function SEO({ title, description, image, article }) {
 SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.string.isRequired,
   article: PropTypes.bool,
 };
 
 SEO.defaultProps = {
   title: null,
   description: null,
-  image: null,
   article: false,
 };

@@ -2,7 +2,6 @@ module.exports = {
   siteMetadata: {
     title: "Aaron Raff",
     url: "https://www.aaronraff.dev",
-    image: "/static/profile_picture.jpg",
     description: "Aaron Raff's Blog",
     twitterUsername: "@aaronraff_",
   },

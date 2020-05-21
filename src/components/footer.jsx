@@ -25,15 +25,12 @@ export default function Footer() {
         target="_blank"
         rel="noopener noreferrer"
         className="inline-block mx-4 text-lg"
+        title={links[index]}
       >
         {icon}
       </a>
     );
   });
 
-  return (
-    <div className="text-center my-16">
-      {elts}
-    </div>
-  );
+  return <div className="text-center my-16">{elts}</div>;
 }

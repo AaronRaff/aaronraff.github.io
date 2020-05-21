@@ -9,8 +9,8 @@ export default function Home() {
     query ProfilePictureQuery {
       file(relativePath: { eq: "profile-picture.jpg" }) {
         childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
+          fixed(width: 400) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <SEO image={data.file.childImageSharp.fluid.src} />
+      <SEO image={data.file.childImageSharp.fixed.src} />
       <PostList />
     </Layout>
   );

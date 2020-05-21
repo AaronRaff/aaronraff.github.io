@@ -8,8 +8,8 @@ export default function Header({ children }) {
     query MyQuery {
       file(relativePath: { eq: "profile-picture.jpg" }) {
         childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
+          fixed(width: 100) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
@@ -32,7 +32,7 @@ export default function Header({ children }) {
         <div className="text-right pl-40 hidden sm:inline-block">
           <Img
             className="rounded-full h-20 w-20"
-            fluid={data.file.childImageSharp.fluid}
+            fluid={data.file.childImageSharp.fixed}
             alt="Aaron"
           />
         </div>
