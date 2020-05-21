@@ -23,11 +23,15 @@ export default function PostList() {
   const posts = postData.allMarkdownRemark.edges.map((edge) => {
     const { node } = edge;
     return (
-      <Link to={node.frontmatter.slug}>
-        <h1 className="text-2xl font-bold pb-2">{node.frontmatter.title}</h1>
-        <p className="font-light pb-2 text-gray-500">{node.frontmatter.date}</p>
-        <p>{node.frontmatter.subtitle}</p>
-      </Link>
+      <div className="my-16">
+        <Link to={node.frontmatter.slug}>
+          <h1 className="text-2xl font-bold pb-2">{node.frontmatter.title}</h1>
+          <p className="font-light pb-2 text-gray-500">
+            {node.frontmatter.date}
+          </p>
+          <p>{node.frontmatter.subtitle}</p>
+        </Link>
+      </div>
     );
   });
 
