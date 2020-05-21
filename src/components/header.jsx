@@ -18,27 +18,25 @@ export default function Header({ children }) {
 
   return (
     <div>
-      <div className="inline-block mb-24">
-        <Link to="/" className="text-3xl font-bold mb-3 inline-block">
-          Aaron Raff
-        </Link>
-        <h3 className="text-1xl">
-          Full-Stack Software Engineer at
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.fishtownanalytics.com/"
-            className="font-bold"
-          >
-            <span> Fishtown Analytics</span>
-          </a>
-        </h3>
+      <div className="inline-block mb-20 flex">
+        <div>
+          <Link to="/" className="text-3xl font-bold mb-3 inline-block">
+            Aaron Raff
+          </Link>
+          <h3 className="text-1xl font-light">
+            Full-Stack Software Engineer with an interest in compilers and
+            distributed systems. Recently graduated from Kutztown University
+            with a B.S. in Computer Science.
+          </h3>
+        </div>
+        <div className="text-right pl-40 hidden sm:inline-block">
+          <Img
+            className="rounded-full h-20 w-20"
+            fluid={data.file.childImageSharp.fluid}
+            alt="Aaron"
+          />
+        </div>
       </div>
-      <Img
-        className="rounded-full h-20 w-20 float-right hidden sm:inline-block"
-        fluid={data.file.childImageSharp.fluid}
-        alt="Aaron"
-      />
       {children}
     </div>
   );
