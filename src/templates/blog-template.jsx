@@ -51,15 +51,12 @@ export default function Template({ data }) {
       </Link>
       <h1 className="text-3xl font-bold pb-3 mt-8">{frontmatter.title}</h1>
       <p className="font-light pb-2 text-gray-500">{frontmatter.date}</p>
-      <p className="mb-8">{frontmatter.subtitle}</p>
+      <p className="mb-8 text-lg italic">{frontmatter.subtitle}</p>
       <Img
         className="h-64 w-full block"
         alt={frontmatter.altText}
         fluid={frontmatter.featuredImage.childImageSharp.fluid}
       />
-      <p className="font-light text-center text-sm text-gray-500 mt-2">
-        {frontmatter.photoCreds}
-      </p>
       <div className="post mt-4">
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
@@ -87,11 +84,10 @@ export const pageQuery = graphql`
         slug
         title
         subtitle
-        photoCreds
         altText
         featuredImage {
           childImageSharp {
-            fluid(maxWidth: 500) {
+            fluid(maxWidth: 3000) {
               ...GatsbyImageSharpFluid
             }
           }
@@ -109,7 +105,6 @@ Template.propTypes = {
         title: PropTypes.string.isRequired,
         subtitle: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
-        photoCreds: PropTypes.string.isRequired,
         altText: PropTypes.string.isRequired,
         featuredImage: PropTypes.shape({
           childImageSharp: PropTypes.shape({

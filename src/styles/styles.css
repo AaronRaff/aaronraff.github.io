@@ -7,5 +7,9 @@
 }
 
 .post p {
-    @apply text-lg;
+    @apply text-lg my-4;
+}
+
+pre {
+    @apply bg-gray-100 p-8;
 }
