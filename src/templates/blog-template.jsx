@@ -1,10 +1,11 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
 import { DiscussionEmbed } from "disqus-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "@reach/router";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -44,7 +45,11 @@ export default function Template({ data }) {
         image={frontmatter.featuredImage.childImageSharp.fluid.src}
         article
       />
-      <h1 className="text-3xl font-bold pb-3">{frontmatter.title}</h1>
+      <Link to="/" className="text-gray-500">
+        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+        See other posts
+      </Link>
+      <h1 className="text-3xl font-bold pb-3 mt-8">{frontmatter.title}</h1>
       <p className="font-light pb-2 text-gray-500">{frontmatter.date}</p>
       <p className="mb-8">{frontmatter.subtitle}</p>
       <Img
