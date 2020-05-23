@@ -24,9 +24,9 @@ export default function Header({ children }) {
             Aaron Raff
           </Link>
           <h3 className="text-1xl font-light">
-            Full-Stack Software Engineer with an interest in compilers and
-            distributed systems. Recently graduated from Kutztown University
-            with a B.S. in Computer Science.
+            Full-Stack Software Engineer based in Lancaster, PA. Interested in
+            compilers and distributed systems. Recent graduate of Kutztown
+            University with a B.S. in Computer Science.
           </h3>
         </div>
         <div className="text-right pl-40 hidden sm:inline-block">
