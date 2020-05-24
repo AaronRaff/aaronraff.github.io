@@ -11,7 +11,7 @@
 }
 
 .post pre {
-    @apply bg-gray-100 p-8 mt-2 mb-8 overflow-auto;
+    @apply p-8 mt-2 mb-8 overflow-auto;
 }
 
 .post blockquote {
