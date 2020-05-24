@@ -83,6 +83,8 @@ The grammar above allows us to define the tokens that our lexer should emit when
 
 *lexer.go*
 ```go
+type Token int
+
 const (
 	EOF = iota
 	ILLEGAL
