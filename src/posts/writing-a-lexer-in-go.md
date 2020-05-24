@@ -153,7 +153,7 @@ func NewLexer(reader io.Reader) *Lexer {
 
 The caller will be expected to create a reader with the appropriate source file and pass it as an argument when creating a Lexer. As you can see, the Lexer will want to keep track of the line and column so that we can effectively report errors later.
 
-Next, let’s add a `Lex` function that returns a single token at a time. The caller will then be able to continuously call `Lex` until an EOF token is returned. First let’s handle the case where we are at the end of the input file.
+Next, let’s add a `Lex` function that returns a single token at a time. The caller will then be able to continuously call `Lex` until an EOF token is returned. First, let’s handle the case where we are at the end of the input file.
 
 *lexer.go*
 ```go

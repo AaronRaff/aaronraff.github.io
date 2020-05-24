@@ -10,8 +10,8 @@
     @apply text-lg my-4;
 }
 
-.post pre {
-    @apply p-8 mt-2 mb-8 overflow-auto;
+.post .gatsby-highlight {
+    @apply mb-8 overflow-auto;
 }
 
 .post blockquote {
