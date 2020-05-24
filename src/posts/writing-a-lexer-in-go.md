@@ -31,26 +31,26 @@ And here are the tokens that are emitted by Go’s scanner:
 
 *output*
 ```
-1:1	package	"package"
-1:9	IDENT	"main"
-1:13	;		"\n"
-3:1	import		"import"
-3:8	STRING	"\"fmt\""
+1:1     package "package"
+1:9     IDENT	"main"
+1:13    ;	    "\n"
+3:1	    import	"import"
+3:8	    STRING  "\"fmt\""
 3:13	;		"\n"
-5:1	func		"func"
-5:6	IDENT	"main"
+5:1	    func	"func"
+5:6	    IDENT	"main"
 5:10	(		""
 5:11	)		""
 5:13	{		""
-6:2	IDENT	"fmt"
-6:5	.		""
-6:6	IDENT	"Println"
+6:2	    IDENT	"fmt"
+6:5	    .		""
+6:6	    IDENT	"Println"
 6:13	(		""
 6:14	STRING	"\"Hello world!\""
 6:28	)		""
 6:29	;		"\n"
-7:1	}		""
-7:2	;		"\n"
+7:1	    }		""
+7:2	    ;		"\n"
 ```
 
 The first column contains the tokens position, the second is the token’s type, and the final column is the literal value of that token. There are a few important things to take note of here. First off, the lexer does not emit any tabs or spaces. This is because Go’s syntax does not rely on these things (unlike Python) and it is really just there for human readability. Another thing to notice is the IDENT tokens. Basically, anything that is not a keyword in Go will be marked as an identifier and the accompanying string will be noted as the literal value.
@@ -61,17 +61,15 @@ If you are wondering why these tokens are useful, it’s because they represent 
 
 Now that we have taken a look at a lexer in practice, let’s build our own from scratch! We first need to define a grammar for our programming language. To keep it simple, let’s only include a few different things:
 
-```
-program → expr*
+> program → expr*
 
-expr → assignment | infixExpr | int
+> expr → assignment | infixExpr | **int**
 
-assignment → id = expr ;
+> assignment → **id** **=** expr ;
 
-infixExp → expr infixOp expr ;
+> infixExp → expr infixOp expr ;
 
-infixOp → + | - | * | / 
-```
+> infixOp → **+** | **-** | ***** | **/**
 
 Anything that is bolded is called a *terminal*, meaning that it cannot be expanded any further. The *terminals* are very important when building a lexer, and we will see that later. The grammar can be read like this:
 
@@ -194,32 +192,32 @@ Then let’s add some logic to take care some of the more basic (one character) 
 ```go
 func (l *Lexer) Lex() (Position, Token, string) {
 	// keep looping until we return a token
-for {
-	…
-// update the column to the position of the newly read in rune
-l.pos.column++
+    for {
+            …
+        // update the column to the position of the newly read in rune
+        l.pos.column++
 
-switch r {
-case '\n':
-l.resetPosition()
-case ';':
-	return l.pos, SEMI, ";"
-case '+':
-	return l.pos, ADD, "+"
-case '-':
-	return l.pos, SUB, "-"
-case '*':
-return l.pos, MUL, "*"
-case '/':
-	return l.pos, DIV, "/"
-case '=':
-	return l.pos, ASSIGN, "="
-		default:
-			if unicode.IsSpace(r) {
-				continue // nothing to do here, just move on
-			}
-}
-}
+        switch r {
+        case '\n':
+            l.resetPosition()
+        case ';':
+            return l.pos, SEMI, ";"
+        case '+':
+            return l.pos, ADD, "+"
+        case '-':
+            return l.pos, SUB, "-"
+        case '*':
+            return l.pos, MUL, "*"
+        case '/':
+            return l.pos, DIV, "/"
+        case '=':
+            return l.pos, ASSIGN, "="
+        default:
+            if unicode.IsSpace(r) {
+                continue // nothing to do here, just move on
+            }
+        }
+    }
 }
 
 func (l *Lexer) resetPosition() {
@@ -248,9 +246,8 @@ func (l *Lexer) Lex() (Position, Token, string) {
 				lit := l.lexInt()
 				return startPos, INT, lit
 			}
-
-}
-}
+        }
+    }
 }
 
 func (l *Lexer) backup() {
@@ -334,7 +331,7 @@ func (l *Lexer) lexIdent() string {
 			}
 		}
 			
-l.pos.column++
+        l.pos.column++
 		if unicode.IsLetter(r) {
 			lit = lit + string(r)
 		} else {
@@ -390,24 +387,24 @@ c + 123;
 
 *output*
 ```
-1:1	IDENT	a
-1:3	=		=
-1:5	INT		5
-1:6	;		;
-2:1	IDENT	b
-2:3	=		=
-2:5	IDENT	a
-2:7	+		+
-2:9	INT		6
+1:1     IDENT	a
+1:3	    =		=
+1:5	    INT		5
+1:6	    ;		;
+2:1	    IDENT	b
+2:3	    =		=
+2:5	    IDENT	a
+2:7	    +		+
+2:9	    INT		6
 2:10	;		;
-3:1	IDENT	c
-3:3	+		+
-3:5	INT		123
-3:8	;		;
-4:1	INT		5
-4:2	+		+
-4:3	INT		12
-4:5	;		;
+3:1	    IDENT	c
+3:3	    +		+
+3:5	    INT		123
+3:8	    ;		;
+4:1	    INT		5
+4:2	    +		+
+4:3	    INT		12
+4:5	    ;		;
 ```
 
 That’s it! I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/writing-a-lexer-in-go). The repository also includes some unit tests that I didn’t cover in this post.
