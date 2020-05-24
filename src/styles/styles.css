@@ -11,5 +11,5 @@
 }
 
 pre {
-    @apply bg-gray-100 p-8;
+    @apply bg-gray-100 p-8 my-4;
 }
