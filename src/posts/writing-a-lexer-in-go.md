@@ -83,10 +83,6 @@ The grammar above allows us to define the tokens that our lexer should emit when
 
 *lexer.go*
 ```go
-package main
-
-type Token int
-
 const (
 	EOF = iota
 	ILLEGAL
@@ -134,8 +130,6 @@ We’re now ready to scan the source program and emit some tokens! We’ll start
 
 *lexer.go*
 ```go
-import "bufio"
-
 type Position struct {
 	line   int
 	column int
@@ -146,10 +140,10 @@ type Lexer struct {
 	reader *bufio.Reader
 }
 
-func NewLexer(reader *bufio.Reader) *Lexer {
+func NewLexer(reader io.Reader) *Lexer {
 	return &Lexer{
 		pos:    Position{line: 1, column: 0},
-		reader: reader,
+		reader: bufio.NewReader(reader),
 	}
 }
 
@@ -161,12 +155,6 @@ Next, let’s add a `Lex` function that returns a single token at a time. The ca
 
 *lexer.go*
 ```go
-import (
-	"bufio"
-	"io"
-	"unicode"
-)
-
 // Lex scans the input for the next token. It returns the position of the token,
 // the token's type, and the literal value.
 func (l *Lexer) Lex() (Position, Token, string) {
@@ -267,7 +255,6 @@ func (l *Lexer) lexInt() string {
 		if err != nil {
 			if err == io.EOF {
 				// at the end of the int
-				l.backup()
 				return lit
 			}
 		}
@@ -326,7 +313,6 @@ func (l *Lexer) lexIdent() string {
 		if err != nil {
 			if err == io.EOF {
 				// at the end of the identifier
-				l.backup()
 				return lit
 			}
 		}
@@ -347,22 +333,13 @@ That’s it! It’s important to note that lexing does not catch errors like und
 
 *lexer.go*
 ```go
-import (
-	"bufio"
-	"fmt"
-	"io"
-	"os"
-	"unicode"
-)
-
 func main() {
 	file, err := os.Open("input.test")
 	if err != nil {
 		panic(err)
 	}
 
-	reader := bufio.NewReader(file)
-	lexer := NewLexer(reader)
+	lexer := NewLexer(file)
 	for {
 		pos, tok, lit := lexer.Lex()
 		if tok == EOF {
