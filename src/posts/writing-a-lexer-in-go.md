@@ -13,7 +13,7 @@ A lexer, which is also sometimes referred to as a scanner, reads a source progra
 
 # A lexer in action
 
-Before we write our own lexer, let’s take a look at Go’s to get a better idea of what is meant by a “token”. You can use Go’s scanner package to take a look at exactly what tokens are emitted by Go’s lexer. There is an example of how to do that in the [documentation](https://golang.org/pkg/go/scanner/#Scanner.Scan).
+Before we write our own lexer, let’s take a look at Go’s to get a better idea of what is meant by a “token”. You can use Go’s scanner package to take a look at exactly what tokens are emitted by Go’s lexer. There is an example of how to do that in the [documentation](https://golang.org/pkg/go/scanner/#Scanner.Scan "Go's scanner documentation").
 Here is the program that we will put through the scanner:
 
 *main.go*
@@ -55,7 +55,7 @@ And here are the tokens that are emitted by Go’s scanner:
 
 The first column contains the tokens position, the second is the token’s type, and the final column is the literal value of that token. There are a few important things to take note of here. First off, the lexer does not emit any tabs or spaces. This is because Go’s syntax does not rely on these things (unlike Python) and it is really just there for human readability. Another thing to notice is the IDENT tokens. Basically, anything that is not a keyword in Go will be marked as an identifier and the accompanying string will be noted as the literal value.
 
-If you are wondering why these tokens are useful, it’s because they represent the source program in a way that the parser can understand! You can find all of the token types in Go’s [documentation](https://golang.org/pkg/go/token/#Token). This long list might seem overwhelming, but don’t worry we’re going to build a very simple lexer with only a few toke types!
+If you are wondering why these tokens are useful, it’s because they represent the source program in a way that the parser can understand! You can find all of the token types in Go’s [documentation](https://golang.org/pkg/go/token/#Token "Go's token documentation"). This long list might seem overwhelming, but don’t worry we’re going to build a very simple lexer with only a few toke types!
 
 # Our language
 
@@ -386,4 +386,4 @@ c + 123;
 4:5	    ;		;
 ```
 
-That’s it! I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/writing-a-lexer-in-go). The repository also includes some unit tests that I didn’t cover in this post.
+That’s it! I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/writing-a-lexer-in-go "Source code repository"). The repository also includes some unit tests that I didn’t cover in this post.
