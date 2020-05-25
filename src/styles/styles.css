@@ -7,11 +7,11 @@
 }
 
 .post p {
-    @apply text-lg my-4;
+    @apply text-lg mb-8 leading-relaxed;
 }
 
 .post .gatsby-highlight {
-    @apply mb-8 overflow-auto;
+    @apply -mt-8 mb-8 overflow-auto;
 }
 
 .post blockquote {

@@ -9,7 +9,7 @@ featuredImage: ../images/writing-a-lexer-in-go-featured.jpg
 
 # What is a lexer?
 
-A lexer, which is also sometimes referred to as a scanner, reads a source program and converts the input into what is known as a token stream. This is a very important step in compilation since these tokens are used by the parser to create an AST (Abstract Syntax Tree). If you are unfamiliar with parsers and ASTs, don’t worry! This post is going to focus only on building a lexer. If you are interested in learning how to write a parser in Go, let me know down in the comments!
+A lexer, which is also sometimes referred to as a scanner, reads a source program and converts the input into what is known as a token stream. This is a very important step in compilation since these tokens are used by the parser to create an AST (Abstract Syntax Tree). If you are unfamiliar with parsers and ASTs, don’t worry! This post is going to focus only on building a lexer.
 
 # A lexer in action
 
@@ -27,7 +27,7 @@ func main() {
 }
 ```
 
-And here are the tokens that are emitted by Go’s scanner:
+And here are the tokens that are emitted:
 
 *output*
 ```
@@ -53,9 +53,9 @@ And here are the tokens that are emitted by Go’s scanner:
 7:2	    ;		"\n"
 ```
 
-The first column contains the tokens position, the second is the token’s type, and the final column is the literal value of that token. There are a few important things to take note of here. First off, the lexer does not emit any tabs or spaces. This is because Go’s syntax does not rely on these things (unlike Python) and it is really just there for human readability. Another thing to notice is the IDENT tokens. Basically, anything that is not a keyword in Go will be marked as an identifier and the accompanying string will be noted as the literal value.
+The first column contains the tokens position, the second is the token’s type, and the final column is the literal value of that token. There are a few important things to take note of here. First off, the lexer does not emit any tabs or spaces. This is because Go’s syntax does not rely on these things. Another thing to notice is the **IDENT** tokens. Basically, anything that is not a keyword in Go will be marked as an identifier and the accompanying string will be noted as the literal value.
 
-If you are wondering why these tokens are useful, it’s because they represent the source program in a way that the parser can understand! You can find all of the token types in Go’s [documentation](https://golang.org/pkg/go/token/#Token "Go's token documentation"). This long list might seem overwhelming, but don’t worry we’re going to build a very simple lexer with only a few toke types!
+If you are wondering why these tokens are useful, it’s because they represent the source program in a way that the parser can understand!
 
 # Our language
 
@@ -79,7 +79,7 @@ The grammar becomes much more important when building a parser, but it’s impor
 
 # Our tokens
 
-The grammar above allows us to define the tokens that our lexer should emit when scanning. Let’s define them:
+The grammar above allows us to define the tokens that our lexer should emit when scanning. The tokens are simply just the *terminals*! We will also include an **EOF** and **ILLEGAL** token to allow us to signal the end of the program and characters that are not legal in our language, respectively.
 
 *lexer.go*
 ```go
@@ -122,13 +122,9 @@ func (t Token) String() string {
 }
 ```
 
-This is just a list of all the token types that we expect to see in our language. You can see that these are just the *terminals*, or the most basic elements, of our grammar. We also include an EOF token to represent the end of the token stream and an ILLEGAL token to denote input that is not part of our grammar.
-
-You’ll see that I included a `String` function as well. This will be useful when printing out the tokens that out lexer is emitting.
-
 # Scanning the input
 
-We’re now ready to scan the source program and emit some tokens! We’ll start by creating a Lexer struct that will hold some important state:
+We’re now ready to scan the source program and emit some tokens! We’ll start by creating a Lexer struct that will hold some state:
 
 *lexer.go*
 ```go
@@ -151,7 +147,7 @@ func NewLexer(reader io.Reader) *Lexer {
 
 ```
 
-The caller will be expected to create a reader with the appropriate source file and pass it as an argument when creating a Lexer. As you can see, the Lexer will want to keep track of the line and column so that we can effectively report errors later.
+The caller will be expected to create a reader with the appropriate source file and pass it as an argument when creating a Lexer.
 
 Next, let’s add a `Lex` function that returns a single token at a time. The caller will then be able to continuously call `Lex` until an EOF token is returned. First, let’s handle the case where we are at the end of the input file.
 
@@ -176,14 +172,14 @@ func (l *Lexer) Lex() (Position, Token, string) {
 }
 ```
 
-Then let’s add some logic to take care some of the more basic (one character) *terminals* in our grammar. We can use a simple switch statement to check if we have come across one of our *terminals*.
+Then let’s add some logic to take care some of the more basic *terminals* in our grammar. We can use a switch statement to check if we have come across one of our *terminals:*
 
 *lexer.go*
 ```go
 func (l *Lexer) Lex() (Position, Token, string) {
 	// keep looping until we return a token
     for {
-            …
+        …
         // update the column to the position of the newly read in rune
         l.pos.column++
 
@@ -216,7 +212,7 @@ func (l *Lexer) resetPosition() {
 }
 ```
 
-This little bit of code allows us to lex everything except identifiers and integers, which is pretty neat! Now that we have that squared away, let’s handle integers next. We need to detect if we have just seen a digit and if we have, scan the rest of the digits that follow to tokenize the integer.
+This allows us to lex everything except identifiers and integers, which is pretty neat! Let’s handle integers next. We need to detect if we have just seen a digit and, if we have, scan the rest of the digits that follow to tokenize the integer.
 
 *lexer.go*
 ```go
@@ -273,7 +269,7 @@ func (l *Lexer) lexInt() string {
 }
 ```
 
-As you can see, lexInt just scans all the consecutive digits and then returns the literal. Handling identifiers can be accomplished in a similar fashion, however, we should define what characters are valid in an identifier. For our language, let’s only allow uppercase and lowercase letters, everything else should be considered an illegal token.
+As you can see, `lexInt` just scans all the consecutive digits and then returns the literal. Handling identifiers can be accomplished in a similar fashion, however, we should define what characters are valid in an identifier. For our language, let’s only allow uppercase and lowercase letters, everything else should be considered an **ILLEGAL** token.
 
 *lexer.go*
 ```go
@@ -295,6 +291,7 @@ func (l *Lexer) Lex() (Position, Token, string) {
 				lit := l.lexInt()
 				return startPos, INT, lit
 			} else if unicode.IsLetter(r) {
+				// backup and let lexIdent rescan the beginning of the ident
 				startPos := l.pos
 				l.backup()
 				lit := l.lexIdent()
@@ -331,7 +328,7 @@ func (l *Lexer) lexIdent() string {
 }
 ```
 
-That’s it! It’s important to note that lexing does not catch errors like undefined variables or invalid syntax. Its only concern is lexical correctness (i.e. are the characters used allowed in our language). Here is how you can run the Lexer and view the output, which is akin to the Go scanner that we took a look at in the beginning of this post:
+That’s it! It’s important to note that lexing does not catch errors like undefined variables or invalid syntax. Its only concern is lexical correctness (i.e. are the characters used allowed in our language). Here is how you can run the lexer and view the output:
 
 *lexer.go*
 ```go
@@ -386,4 +383,4 @@ c + 123;
 4:5	    ;		;
 ```
 
-That’s it! I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/writing-a-lexer-in-go "Source code repository"). The repository also includes some unit tests that I didn’t cover in this post.
+I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/writing-a-lexer-in-go "Source code repository"). The repository also includes unit tests that I didn’t cover.
