@@ -13,7 +13,7 @@ A lexer, which is also sometimes referred to as a scanner, reads a source progra
 
 # A lexer in action
 
-Before we write our own lexer, let’s take a look at Go’s to get a better idea of what is meant by a “token”. You can use Go’s scanner package to take a look at exactly what tokens are emitted by Go’s lexer. There is an example of how to do that in the [documentation](https://golang.org/pkg/go/scanner/#Scanner.Scan "Go's scanner documentation").
+Before we write our own lexer, let’s take a look at Go’s lexer to get a better idea of what is meant by a “token”. You can use Go’s scanner package to take a look at exactly what tokens are emitted by Go’s lexer. There is an example of how to do that in the [documentation](https://golang.org/pkg/go/scanner/#Scanner.Scan "Go's scanner documentation").
 Here is the program that we will put through the scanner:
 
 *main.go*
@@ -53,7 +53,7 @@ And here are the tokens that are emitted:
 7:2	    ;		"\n"
 ```
 
-The first column contains the tokens position, the second is the token’s type, and the final column is the literal value of that token. There are a few important things to take note of here. First off, the lexer does not emit any tabs or spaces. This is because Go’s syntax does not rely on these things. Another thing to notice is the **IDENT** tokens. Basically, anything that is not a keyword in Go will be marked as an identifier and the accompanying string will be noted as the literal value.
+The first column contains the token's position, the second is the token’s type, and the final column is the literal value of that token. There are a few important things to take note of here. First off, the lexer does not emit any tabs or spaces. This is because Go’s syntax does not rely on these things. Another thing to notice is the **IDENT** tokens. Basically, anything that is not a keyword in Go will be marked as an identifier and the accompanying string will be noted as the literal value.
 
 If you are wondering why these tokens are useful, it’s because they represent the source program in a way that the parser can understand!
 
@@ -172,7 +172,7 @@ func (l *Lexer) Lex() (Position, Token, string) {
 }
 ```
 
-Then let’s add some logic to take care some of the more basic *terminals* in our grammar. We can use a switch statement to check if we have come across one of our *terminals:*
+Then let’s add some logic to take care of some of the more basic *terminals* in our grammar. We can use a switch statement to check if we have come across one of our *terminals:*
 
 *lexer.go*
 ```go
@@ -212,7 +212,7 @@ func (l *Lexer) resetPosition() {
 }
 ```
 
-This allows us to lex everything except identifiers and integers, which is pretty neat! Let’s handle integers next. We need to detect if we have just seen a digit and, if we have, scan the rest of the digits that follow to tokenize the integer.
+This allows us to lex everything except identifiers and integers, which is pretty neat! Let’s handle integers next. We need to detect if we have just seen a digit; and if we have, scan the rest of the digits that follow to tokenize the integer.
 
 *lexer.go*
 ```go
