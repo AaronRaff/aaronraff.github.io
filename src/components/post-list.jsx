@@ -29,7 +29,7 @@ export default function PostList() {
           <p className="font-light pb-2 text-gray-500">
             {node.frontmatter.date}
           </p>
-          <p className="mr-48 italic">{node.frontmatter.subtitle}</p>
+          <p className="md:mr-48 italic">{node.frontmatter.subtitle}</p>
         </Link>
       </div>
     );

@@ -1,10 +1,10 @@
 ---
 slug: "/blog/writing-a-lexer-in-go"
 date: "2020-05-27"
-title: "Writing a Lexer in Go"
+title: "How to Write a Lexer in Go"
 subtitle: "A lexer is the first phase in all modern compilers, but how do you write one? Let’s build one from scratch in Go!"
 altText: "An illustration of a lexer."
-featuredImage: ../images/writing-a-lexer-in-go-featured.jpg
+featuredImage: ../images/how-to-write-a-lexer-in-go-featured.jpg
 ---
 
 # What is a lexer?
