@@ -3,13 +3,21 @@
 @tailwind utilities;
 
 .post h1 {
-    @apply text-2xl font-bold my-4;
+    @apply text-2xl font-bold mb-4 mt-12;
 }
 
 .post p {
-    @apply text-lg my-4;
+    @apply text-lg mb-8 leading-relaxed;
 }
 
-pre {
-    @apply bg-gray-100 p-8;
+.post .gatsby-highlight {
+    @apply -mt-8 mb-8 overflow-auto;
+}
+
+.post blockquote {
+    @apply pl-12 italic my-8;
+}
+
+.post a {
+    @apply text-blue-600 underline;
 }

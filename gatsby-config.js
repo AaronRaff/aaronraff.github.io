@@ -37,14 +37,19 @@ module.exports = {
       },
     },
     "gatsby-transformer-sharp",
-    "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: ["gatsby-remark-prismjs"],
+      },
+    },
     {
       resolve: "gatsby-plugin-prefetch-google-fonts",
       options: {
         fonts: [
           {
             family: "Montserrat",
-            variants: ["100", "300", "500", "700", "900"],
+            variants: ["100", "300", "400", "500", "700", "900"],
           },
         ],
       },
