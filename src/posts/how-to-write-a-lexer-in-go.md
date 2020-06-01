@@ -383,4 +383,4 @@ c + 123;
 4:5	    ;		;
 ```
 
-I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/writing-a-lexer-in-go "Source code repository"). The repository also includes unit tests that I didn’t cover.
+I hope that you learned something from this post, and I would love to hear your feedback down in the comments section. All of the source code for this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/how-to-write-a-lexer-in-go "Source code repository"). The repository also includes unit tests that I didn’t cover.
