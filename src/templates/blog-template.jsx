@@ -13,7 +13,7 @@ export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
   const pageLink = encodeURIComponent(
-    `https://www.aaronraff.dev/${frontmatter.slug}`
+    `https://www.aaronraff.dev${frontmatter.slug}`
   );
   const links = [
     `https://twitter.com/intent/tweet?url=${pageLink}`,
