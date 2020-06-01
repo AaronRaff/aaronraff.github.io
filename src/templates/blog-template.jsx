@@ -6,15 +6,15 @@ import { DiscussionEmbed } from "disqus-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useLocation } from "@reach/router";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
-  const location = useLocation();
-  const pageLink = encodeURIComponent(location.href);
+  const pageLink = encodeURIComponent(
+    `https://www.aaronraff.dev${frontmatter.slug}`
+  );
   const links = [
     `https://twitter.com/intent/tweet?url=${pageLink}`,
     `http://www.facebook.com/share.php?u=${pageLink}`,
