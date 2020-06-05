@@ -12,9 +12,7 @@ import SEO from "../components/seo";
 export default function Template({ data }) {
   const { markdownRemark } = data;
   const { frontmatter, html } = markdownRemark;
-  const pageLink = encodeURIComponent(
-    `https://www.aaronraff.dev${frontmatter.slug}`
-  );
+  const pageLink = `https://www.aaronraff.dev${frontmatter.slug}`;
   const links = [
     `https://twitter.com/intent/tweet?url=${pageLink}`,
     `http://www.facebook.com/share.php?u=${pageLink}`,
