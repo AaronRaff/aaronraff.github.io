@@ -44,6 +44,7 @@ export default function Template({ data }) {
         description={frontmatter.subtitle}
         image={frontmatter.featuredImage.childImageSharp.fluid.src}
         article
+        slug={frontmatter.slug}
       />
       <Link to="/" className="text-gray-500">
         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />

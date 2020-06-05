@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
 import pngFavicon from "../assets/favicon.png";
 import svgFavicon from "../assets/favicon.svg";
@@ -19,8 +18,7 @@ const query = graphql`
   }
 `;
 
-export default function SEO({ title, description, image, article }) {
-  const location = useLocation();
+export default function SEO({ title, description, image, article, slug }) {
   const { site } = useStaticQuery(query);
   const {
     defaultTitle,
@@ -33,7 +31,7 @@ export default function SEO({ title, description, image, article }) {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${url}${image}`,
-    url: encodeURIComponent(location.href),
+    url: `${url}${slug}`,
   };
 
   return (
@@ -64,10 +62,12 @@ SEO.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string.isRequired,
   article: PropTypes.bool,
+  slug: PropTypes.string,
 };
 
 SEO.defaultProps = {
   title: null,
   description: null,
   article: false,
+  slug: "/",
 };
