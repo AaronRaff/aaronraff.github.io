@@ -10,13 +10,15 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 export default function Template({ data }) {
-  const { markdownRemark } = data;
+  const { markdownRemark, site } = data;
+  const { siteMetadata } = site;
   const { frontmatter, html } = markdownRemark;
-  const pageLink = encodeURIComponent(
-    `https://www.aaronraff.dev${frontmatter.slug}`
+  const pageLink = encodeURIComponent(`${siteMetadata.url}${frontmatter.slug}`);
+  const tweetText = encodeURIComponent(
+    `${frontmatter.title} by ${siteMetadata.twitterUsername}`
   );
   const links = [
-    `https://twitter.com/intent/tweet?url=${pageLink}`,
+    `https://twitter.com/intent/tweet?url=${pageLink}&text=${tweetText}`,
     `http://www.facebook.com/share.php?u=${pageLink}`,
   ];
   const icons = [
@@ -27,6 +29,7 @@ export default function Template({ data }) {
   const shareLinks = icons.map((icon, index) => {
     return (
       <a
+        key={links[index]}
         href={links[index]}
         target="_blank"
         rel="noopener noreferrer"
@@ -95,6 +98,12 @@ export const pageQuery = graphql`
         }
       }
     }
+    site {
+      siteMetadata {
+        url
+        twitterUsername
+      }
+    }
   }
 `;
 
@@ -115,5 +124,11 @@ Template.propTypes = {
       }).isRequired,
       html: PropTypes.element.isRequired,
     }).isRequired,
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        twitterUsername: PropTypes.string.isRequired,
+      }),
+    }),
   }).isRequired,
 };

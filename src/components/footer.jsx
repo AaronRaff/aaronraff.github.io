@@ -24,6 +24,7 @@ export default function Footer() {
   const elts = icons.map((icon, index) => {
     return (
       <a
+        key={links[index]}
         href={links[index]}
         target="_blank"
         rel="noopener noreferrer"

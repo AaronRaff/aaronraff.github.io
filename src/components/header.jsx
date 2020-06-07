@@ -1,10 +1,9 @@
 import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import PropTypes from "prop-types";
 import Img from "gatsby-image";
 import logo from "../assets/ar-logo.svg";
 
-export default function Header({ children }) {
+export default function Header() {
   const data = useStaticQuery(graphql`
     query MyQuery {
       file(relativePath: { eq: "profile-picture.jpg" }) {
@@ -36,16 +35,11 @@ export default function Header({ children }) {
         <div className="text-right pl-40 hidden sm:inline-block">
           <Img
             className="rounded-full h-20 w-20"
-            fluid={data.file.childImageSharp.fixed}
+            fixed={data.file.childImageSharp.fixed}
             alt="Aaron"
           />
         </div>
       </div>
-      {children}
     </div>
   );
 }
-
-Header.propTypes = {
-  children: PropTypes.element.isRequired,
-};
