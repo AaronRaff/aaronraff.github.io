@@ -8,17 +8,17 @@ featuredImage: ../images/an-introduction-to-producing-and-consuming-kafka-messag
 ---
 # What is Kafka?
 
-The [official documentation](https://kafka.apache.org/) describes Kafka as being a “distributed streaming platform”. In many cases it is used as a message queue that microservices produce events to. These events are then consumed and processed by other microservices. This is the use case that this post will focus on, however there are many [other ways](https://kafka.apache.org/uses) which Kafka can be used.
+The [official documentation](https://kafka.apache.org/ "Kafka's Official Documentation") describes Kafka as being a “distributed streaming platform”. In many cases it is used as a message queue that microservices produce events to. These events are then consumed and processed by other microservices. This is the use case that this post will focus on, however there are many [other ways](https://kafka.apache.org/uses) which Kafka can be used.
 
-There are a few important concepts to understand before starting. A *broker* in Kafka is another term for a server in the cluster. These brokers manage *topics* which is a way to group messages together. *Producers* are processes that write messages to topics, and *consumers* are processes that read messages from topics. The details about how each of these components are designed are out of scope for this post, but the [documentation](https://kafka.apache.org/intro) outlines each of these if you are interested.
+There are a few important concepts to understand before starting. A *broker* in Kafka is another term for a server in the cluster. These brokers manage *topics* which is a way to group messages together. *Producers* are processes that write messages to topics, and *consumers* are processes that read messages from topics. The details about how each of these components are designed are out of scope for this post, but the [documentation](https://kafka.apache.org/intro "Kafka's Intro Documentation") outlines each of these if you are interested.
 
 # Running Kafka locally
 
-All of the examples in this post will be interacting with a Kafka cluster that is running locally on my machine. Getting one set up is fairly straightforward and is explained in detail in the [quick start guide](https://kafka.apache.org/quickstart). It’s worth noting that my “cluster” will consist of only one node so that we can focus on producing and consuming messages rather than configuring and managing a cluster of servers. Of course, in practice you would want a cluster of multiple machines so that you can take advantage of Kafka’s fault-tolerance.
+All of the examples in this post will be interacting with a Kafka cluster that is running locally on my machine. Getting one set up is fairly straightforward and is explained in detail in the [quick start guide](https://kafka.apache.org/quickstart "Kafka's Quickstart Documentation"). It’s worth noting that my “cluster” will consist of only one node so that we can focus on producing and consuming messages rather than configuring and managing a cluster of servers. Of course, in practice you would want a cluster of multiple machines so that you can take advantage of Kafka’s fault-tolerance.
 
 # Producing messages
 
-The package that we will be using is [confluent-kafka-go](https://github.com/confluentinc/confluent-kafka-go). The examples in this post are adapted from the examples in their repository.
+The package that we will be using is [confluent-kafka-go](https://github.com/confluentinc/confluent-kafka-go "Confluent's Go Repository"). The examples in this post are adapted from the examples in their repository.
 
 I will be producing to a topic named “test”, but of course you can switch that out for whatever you’d like. If you have not already created a topic, you can do so by running:
 
@@ -150,7 +150,7 @@ If you run the consumer with `go run consumer.go` and then run the producer with
 
 At some point, you may eventually be producing thousands of messages per minute which could be a lot for just one consumer to manage. This is also completely ignoring the fact that you will want to have some sort of fault tolerance if a consumer suddenly goes down. Consumer groups can help you address both of these issues!
 
-By having two different consumers within the same group, you are effectively splitting the workload between the two. The offset for the topic applies not to a specific consumer, but rather to its consumer group. This means that if one consumer within the group processes a message, the others will not consume that same message. Each consumer in a consumer group is assigned a set of topic partitions. To test this out you will first need to [start up another Kafka broker](https://kafka.apache.org/quickstart#quickstart_multibroker) and create a partitioned topic like so:
+By having two different consumers within the same group, you are effectively splitting the workload between the two. The offset for the topic applies not to a specific consumer, but rather to its consumer group. This means that if one consumer within the group processes a message, the others will not consume that same message. Each consumer in a consumer group is assigned a set of topic partitions. To test this out you will first need to [start up another Kafka broker](https://kafka.apache.org/quickstart#quickstart_multibroker "Kafka's Quickstart Multibroker Documentation") and create a partitioned topic like so:
 
 *command line*
 ```
@@ -177,4 +177,4 @@ Start by changing the topic in the producer and the consumer to be “test-parti
 
 # Final thoughts
 
-This is only a small sample of what you can do with Kafka, but I’m hoping to dig deeper into some of its other features and use cases in future posts. Thanks for taking the time to read this post, and I hope you’ll decide to stop by again soon! All of the code in this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/an-introduction-to-producing-and-consuming-kafka-messages-in-go).
+This is only a small sample of what you can do with Kafka, but I’m hoping to dig deeper into some of its other features and use cases in future posts. Thanks for taking the time to read this post, and I hope you’ll decide to stop by again soon! All of the code in this post is available on my [GitHub](https://github.com/aaronraff/blog-code/tree/master/an-introduction-to-producing-and-consuming-kafka-messages-in-go "Source Code Repository").
