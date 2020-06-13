@@ -58,7 +58,7 @@ export default function Template({ data }) {
       <p className="mb-4 text-lg italic">{frontmatter.subtitle}</p>
       <Img
         className="w-full block featured-image"
-        imgStyle={{"objectFit": "contain"}}
+        imgStyle={{ objectFit: "contain" }}
         alt={frontmatter.altText}
         fluid={frontmatter.featuredImage.childImageSharp.fluid}
       />
