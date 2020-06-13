@@ -8,7 +8,7 @@ featuredImage: ../images/an-introduction-to-producing-and-consuming-kafka-messag
 ---
 # What is Kafka?
 
-The [official documentation](https://kafka.apache.org/ "Kafka's Official Documentation") describes Kafka as being a “distributed streaming platform”. In many cases it is used as a message queue that microservices produce events to. These events are then consumed and processed by other microservices. This is the use case that this post will focus on, however there are many [other ways](https://kafka.apache.org/uses) which Kafka can be used.
+The [official documentation](https://kafka.apache.org/ "Kafka's Official Documentation") describes Kafka as being a “distributed streaming platform”. In many cases it is used as a message queue that microservices produce events to. These events are then consumed and processed by other microservices. This is the use case that this post will focus on, however there are many [other ways](https://kafka.apache.org/uses "Kafka's Uses Documentation") which Kafka can be used.
 
 There are a few important concepts to understand before starting. A *broker* in Kafka is another term for a server in the cluster. These brokers manage *topics* which is a way to group messages together. *Producers* are processes that write messages to topics, and *consumers* are processes that read messages from topics. The details about how each of these components are designed are out of scope for this post, but the [documentation](https://kafka.apache.org/intro "Kafka's Intro Documentation") outlines each of these if you are interested.
 
