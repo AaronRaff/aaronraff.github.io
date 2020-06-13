@@ -55,13 +55,14 @@ export default function Template({ data }) {
       </Link>
       <h1 className="text-3xl font-bold pb-3 mt-8">{frontmatter.title}</h1>
       <p className="font-light mb-4 text-gray-500">{frontmatter.date}</p>
-      <p className="mb-16 text-lg italic">{frontmatter.subtitle}</p>
+      <p className="mb-4 text-lg italic">{frontmatter.subtitle}</p>
       <Img
-        className="h-64 w-full block"
+        className="w-full block featured-image"
+        imgStyle={{"objectFit": "contain"}}
         alt={frontmatter.altText}
         fluid={frontmatter.featuredImage.childImageSharp.fluid}
       />
-      <div className="post mt-16">
+      <div className="post mt-4">
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
       <div className="text-center my-16 font-light">
@@ -91,7 +92,7 @@ export const pageQuery = graphql`
         altText
         featuredImage {
           childImageSharp {
-            fluid(maxWidth: 1800) {
+            fluid(maxHeight: 450) {
               ...GatsbyImageSharpFluid
             }
           }
