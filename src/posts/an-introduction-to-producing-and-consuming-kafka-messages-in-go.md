@@ -95,7 +95,7 @@ We’re now ready to consume some messages from the “test” topic! Setting up
 func main() {
 	config := &kafka.ConfigMap{
 		"bootstrap.servers": "localhost:9092",
-		"group.id":          	"test-group",
+		"group.id":          "test-group",
 	}
 
 	consumer, err := kafka.NewConsumer(config)
