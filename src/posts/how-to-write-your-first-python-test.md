@@ -1,6 +1,6 @@
 ---
 slug: "/blog/how-to-write-your-first-python-test"
-date: "2020-09-13"
+date: "2020-09-26"
 title: "How to Write Your First Python Test"
 subtitle: "Python’s standard library includes the unittest module which provides handy tools to write tests. Here’s how you can start validating that your Python code works."
 altText: "An example of calling the unittest module from the command line."
