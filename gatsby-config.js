@@ -44,12 +44,53 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-prefetch-google-fonts",
+      resolve: "gatsby-plugin-feed",
       options: {
-        fonts: [
+        query: `
           {
-            family: "Montserrat",
-            variants: ["100", "300", "400", "500", "700", "900"],
+            site {
+              siteMetadata {
+                title
+                description
+                url
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            output: "/rss",
+            title: "Aaron Raff's RSS Feed",
+            match: "^/blog/",
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      frontmatter {
+                        title
+                        date
+                        slug
+                        subtitle
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return {
+                  title: edge.node.frontmatter.title,
+                  date: edge.node.frontmatter.date,
+                  description: edge.node.frontmatter.subtitle,
+                  url: site.siteMetadata.url + edge.node.frontmatter.slug,
+                  guid: site.siteMetadata.url + edge.node.frontmatter.slug,
+                };
+              });
+            },
           },
         ],
       },
