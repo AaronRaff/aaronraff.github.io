@@ -60,7 +60,8 @@ module.exports = {
         feeds: [
           {
             output: "/rss",
-            title: "Aaron Raff's RSS Feed",
+            title: "Aaron Raff",
+            site_url: "https://www.aaronraff.dev",
             match: "^/blog/",
             query: `
               {
