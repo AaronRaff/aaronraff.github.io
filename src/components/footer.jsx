@@ -5,7 +5,7 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faRss } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   const links = [
@@ -13,12 +13,14 @@ export default function Footer() {
     "https://twitter.com/aaronraff_",
     "https://linkedin.com/in/aaronraff",
     "mailto:aaronraffdev@gmail.com",
+    "/rss",
   ];
   const icons = [
     <FontAwesomeIcon icon={faGithub} />,
     <FontAwesomeIcon icon={faTwitter} />,
     <FontAwesomeIcon icon={faLinkedin} />,
     <FontAwesomeIcon icon={faEnvelope} />,
+    <FontAwesomeIcon icon={faRss} />,
   ];
 
   const elts = icons.map((icon, index) => {
