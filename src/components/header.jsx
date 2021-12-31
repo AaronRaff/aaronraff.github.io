@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="inline-block mb-20 flex">
+      <div className="inline-block mb-4 flex">
         <div>
           <Link to="/" className="text-3xl font-bold inline-block">
             <div className="flex items-center mb-3">
@@ -27,9 +27,8 @@ export default function Header() {
             </div>
           </Link>
           <h3 className="text-1xl font-light">
-            Full-Stack Software Engineer based in Lancaster, PA. Interested in
-            compilers and distributed systems. Recent graduate of Kutztown
-            University with a B.S. in Computer Science.
+            Software Engineer based in Raleigh, NC. Interested in
+            distributed systems.
           </h3>
         </div>
         <div className="text-right pl-40 hidden sm:inline-block">
