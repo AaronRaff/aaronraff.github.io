@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import PostList from "../components/post-list";
 import SEO from "../components/seo";
+import CloudflareAnalytics from "../components/cloudflare-analytics";
 
 export default function Home() {
   const data = useStaticQuery(graphql`
@@ -20,6 +21,13 @@ export default function Home() {
   return (
     <Layout>
       <SEO image={data.file.childImageSharp.fixed.src} />
+
+      if (process.env.NODE_ENV === 'production') {
+        <CloudflareAnalytics
+          token={process.env.CLOUDFLARE_ANALYTICS_TOKEN}
+        />
+      }
+
       <PostList />
     </Layout>
   );

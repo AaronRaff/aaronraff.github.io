@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
-import CloudflareAnalytics from "./cloudflare-analytics";
 
 const query = graphql`
   query SEO {
@@ -52,12 +51,6 @@ export default function SEO({ title, description, image, article, slug }) {
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
-
-      if (process.env.NODE_ENV === 'production') {
-        <CloudflareAnalytics
-          token={process.env.CLOUDFLARE_ANALYTICS_TOKEN}
-        />
-      }
     </Helmet>
   );
 }
