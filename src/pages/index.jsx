@@ -24,7 +24,7 @@ export default function Home() {
 
       {process.env.NODE_ENV === 'production' &&
         <CloudflareAnalytics
-          token={process.env.CLOUDFLARE_ANALYTICS_TOKEN}
+          token={process.env.GATSBY_CLOUDFLARE_ANALYTICS_TOKEN}
         />
       }
 
