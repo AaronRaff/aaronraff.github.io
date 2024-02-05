@@ -10,16 +10,6 @@ module.exports = {
     twitterUsername: "@aaronraff_",
   },
   plugins: [
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: process.env.GA_TRACKING_ID,
-        head: false,
-        anonymize: true,
-        respectDNT: true,
-        defer: true, // defer GA script load until after page load
-      },
-    },
     "gatsby-plugin-postcss",
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
