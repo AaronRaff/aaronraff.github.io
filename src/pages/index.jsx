@@ -22,7 +22,7 @@ export default function Home() {
     <Layout>
       <SEO image={data.file.childImageSharp.fixed.src} />
 
-      if (process.env.NODE_ENV === 'production') {
+      {process.env.NODE_ENV === 'production' &&
         <CloudflareAnalytics
           token={process.env.CLOUDFLARE_ANALYTICS_TOKEN}
         />
