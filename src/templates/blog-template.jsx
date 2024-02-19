@@ -49,6 +49,13 @@ export default function Template({ data }) {
         article
         slug={frontmatter.slug}
       />
+
+      {process.env.NODE_ENV === 'production' &&
+        <CloudflareAnalytics
+          token={process.env.GATSBY_CLOUDFLARE_ANALYTICS_TOKEN}
+        />
+      }
+
       <Link to="/" className="text-gray-500">
         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
         See other posts
