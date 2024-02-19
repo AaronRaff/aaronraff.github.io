@@ -6,6 +6,7 @@ import { DiscussionEmbed } from "disqus-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import CloudflareAnalytics from "../components/cloudflare-analytics";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
